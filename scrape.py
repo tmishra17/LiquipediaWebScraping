@@ -60,7 +60,7 @@ for i in range(0, len(yearList)):
 
 print(len(yearCol))
 print(len(charCol))
-liqDict = {"year": yearCol, "winning character": charCol}
+liqDict = {"year": yearCol, "character": charCol}
 liqDf = pd.DataFrame(liqDict)
 liqDf = liqDf.set_index("year")
 liqDf.to_csv("liqwinners.csv")
