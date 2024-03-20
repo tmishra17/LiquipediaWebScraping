@@ -6,7 +6,7 @@ data = pd.read_csv("liqwinners.csv")
 char_count = data.groupby(['year', 'character']).size().reset_index(name='count')
 years = list(set(char_count['year']))
 characters = list(set(char_count['character']))
-
+print(char_count)
 count_data = {'year': [], 'character': [], 'count': []}
 for year in years:
     year_data = char_count[char_count['year'] == year] # find column with matching year
@@ -25,7 +25,7 @@ fig, ax = plt.subplots(figsize=(10,6))
 
 for character in characters:
     char_data = df[df['character'] == character] 
-    ax.plot(char_data['year'], char_data['count'], label=character) # label for each character in the graph
+    ax.plot(char_data['year'], char_data['count'], label=character) # match character label for each character in the graph
 
 
 ax.set_xlabel("Year")
