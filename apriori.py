@@ -1,17 +1,20 @@
-import matplotlib.pyplot as plt
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori, association_rules 
 
 data = pd.read_csv("liqwinners.csv")
 
+
+
 transactions = []
 for year, characters in data.groupby('year'):
     transactions.append(list(characters['character']))
 
-print(transactions)
+#print(transactions)
+char_count = data.groupby(['year', 'character']).size().reset_index(name='count')
+print(char_count)
 
-
+char_count.to_csv("character_count.csv")
 # preprocessing
 te = TransactionEncoder()
 te_arr = te.fit(transactions).transform(transactions)
