@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup
 import requests as rq
-import numpy as np 
 import pandas as pd 
-from mlxtend.frequent_patterns import apriori, association_rules 
+
 
 html_doc = """<html><head><title>The Dormouse's story</title></head>
 <body>
@@ -28,11 +27,6 @@ soup = BeautifulSoup(liqHTML, 'lxml')
 yearCol = []
 charCol = []
 
-# print(f"HTML from Liquidpedia:\n{liqHTML}\n")
-'''
-for link in soup.find_all('a'):
-    print(link)
-'''
 rowlist = soup.find_all("div", class_="divRow")
 print(len(rowlist))
 aRow = rowlist[11]
@@ -66,8 +60,8 @@ for i in range(0, len(yearList)):
 
 print(len(yearCol))
 print(len(charCol))
-liqDict = {"tournament year": yearCol, "winning character": charCol}
+liqDict = {"year": yearCol, "winning character": charCol}
 liqDf = pd.DataFrame(liqDict)
-liqDf = liqDf.set_index("tournament year")
+liqDf = liqDf.set_index("year")
 liqDf.to_csv("liqwinners.csv")
 print("done")
